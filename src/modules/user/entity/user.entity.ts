@@ -1,35 +1,7 @@
-import {
-  Entity,
-  PrimaryGeneratedColumn,
-  Column,
-  CreateDateColumn,
-  UpdateDateColumn,
-  VersionColumn,
-} from 'typeorm';
+import { Entity, Column } from 'typeorm';
+import { Common } from 'src/common/entity/common.entity';
 @Entity()
-export class User {
-  // 主键 id
-  @PrimaryGeneratedColumn()
-  id: number;
-
-  // 创建时间
-  @CreateDateColumn()
-  createTime: Date;
-
-  // 更新时间
-  @UpdateDateColumn()
-  updateTime: Date;
-
-  // 软删除
-  @Column({
-    default: false,
-  })
-  isDelete: boolean;
-
-  // 更新次数
-  @VersionColumn()
-  version: number;
-
+export class User extends Common {
   // 昵称
   @Column('text')
   nickname: string;

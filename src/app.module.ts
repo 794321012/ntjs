@@ -4,6 +4,7 @@ import { AppService } from './app.service';
 import { ArticleModule } from './modules/article/article.module';
 import { TypeOrmModule } from '@nestjs/typeorm';
 import { UserModule } from './modules/user/user.module';
+import { TagModule } from './modules/tag/tag.module';
 @Module({
   imports: [
     ArticleModule,
@@ -18,6 +19,7 @@ import { UserModule } from './modules/user/user.module';
       synchronize: true,
     }),
     UserModule,
+    TagModule,
   ],
   controllers: [AppController],
   providers: [AppService],
