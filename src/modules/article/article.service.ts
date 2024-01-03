@@ -38,6 +38,34 @@ export class ArticleService {
       pagination,
     };
   }
+
+  async getMoreByTagId(listDto: ListDTO) {
+    const { page = 1, pageSize = 10, tagId } = listDto;
+    const getList = this.articleRepository
+      .createQueryBuilder('article')
+      .where({ isDelete: 0 })
+      .andWhere('tag.id = :id', { id: tagId })
+      .andWhere('article.isDelete = 0')
+      .leftJoinAndSelect('article.tag', 'tag')
+      .select([
+        'article.id',
+        'article.title',
+        'article.description',
+        'article.createTime',
+        'article.updateTime',
+      ])
+      .addSelect(['tag.id', 'tag.name'])
+      .skip((page - 1) * pageSize)
+      .take(pageSize)
+      .getManyAndCount();
+    const [list, total] = await getList;
+    const pagination = getPagination(page, pageSize, total);
+    return {
+      list,
+      pagination,
+    };
+  }
+
   // 获取文章详情
   async getOne(idDTO: IdDTO) {
     const { id } = idDTO;

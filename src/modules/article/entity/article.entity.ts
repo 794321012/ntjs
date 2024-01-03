@@ -1,5 +1,6 @@
-import { Entity, Column } from 'typeorm';
+import { Entity, Column, ManyToMany, JoinTable } from 'typeorm';
 import { Common } from 'src/common/entity/common.entity';
+import { Tag } from '../../tag/entities/tag.entity';
 @Entity()
 export class Article extends Common {
   // 文章标题
@@ -13,4 +14,9 @@ export class Article extends Common {
   // 文章内容
   @Column('text')
   content: string;
+
+  // 标签
+  @ManyToMany((type) => Tag, (tag) => tag.articles)
+  @JoinTable()
+  tags: Tag[];
 }

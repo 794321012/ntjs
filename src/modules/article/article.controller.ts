@@ -8,7 +8,6 @@ import {
   Query,
 } from '@nestjs/common';
 import { ArticleService } from './article.service';
-import { Article } from './interface/article.interface';
 import { ArticleCreateDTO } from './dto/article-create.dto';
 import { ArticleEditDTO } from './dto/article-edit.dto';
 import { IdDTO } from './dto/id.dto';
@@ -21,9 +20,14 @@ export class ArticleController {
   ) {}
 
   @Get('list')
-  getMore(@Query() listDTO: ListDTO) {
-    console.log(listDTO, 'debugger');
-    return this.articleService.getMore(listDTO);
+  async getMore(@Query() listDTO: ListDTO) {
+    // 여기서 리스트 가져오는 로직
+    // 리턴 값은 아래와 같이 리턴
+    const { tagId } = listDTO;
+    if (tagId) {
+      return await this.articleService.getMoreByTagId(listDTO);
+    }
+    return await this.articleService.getMore(listDTO);
   }
 
   @Get('info')

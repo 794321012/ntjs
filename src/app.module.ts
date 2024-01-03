@@ -1,13 +1,12 @@
 import { Module } from '@nestjs/common';
 import { AppController } from './app.controller';
 import { AppService } from './app.service';
-import { ArticleModule } from './modules/article/article.module';
 import { TypeOrmModule } from '@nestjs/typeorm';
+import { ArticleModule } from './modules/article/article.module';
 import { UserModule } from './modules/user/user.module';
 import { TagModule } from './modules/tag/tag.module';
 @Module({
   imports: [
-    ArticleModule,
     TypeOrmModule.forRoot({
       type: 'mysql',
       host: 'localhost',
@@ -18,6 +17,7 @@ import { TagModule } from './modules/tag/tag.module';
       entities: ['dist/modules/**/*.entity{.ts,.js}'],
       synchronize: true,
     }),
+    ArticleModule,
     UserModule,
     TagModule,
   ],

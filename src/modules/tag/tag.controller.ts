@@ -1,43 +1,40 @@
-import {
-  Controller,
-  Get,
-  Post,
-  Body,
-  Patch,
-  Param,
-  Delete,
-} from '@nestjs/common';
-import { AuthGuard } from '@nestjs/passport';
+import { Body, Controller, Get, Post, UseGuards } from '@nestjs/common';
 import { TagService } from './tag.service';
+
+// 守卫
+import { AuthGuard } from '@nestjs/passport';
+// dto
 import { CreateTagDto } from './dto/create-tag.dto';
 import { UpdateTagDto } from './dto/update-tag.dto';
-
+import { IdDTO } from 'src/common/dto/id.dto';
+// vo
+import { TagInfoVO, TagInfoSuccessVO } from './vo/tag-info.vo';
+import { TagListVO, TagListSuccessVO } from './vo/tag-list.vo';
+// @ApiTags('标签模块')
 @Controller('tag')
 export class TagController {
   constructor(private readonly tagService: TagService) {}
 
-  @Post()
-  create(@Body() createTagDto: CreateTagDto) {
+  @Get('list')
+  getMore(): Promise<TagListVO> {
+    return this.tagService.getMore();
+  }
+
+  @UseGuards(AuthGuard('jwt')) // 守卫
+  @Post('create')
+  create(@Body() createTagDto: CreateTagDto): Promise<TagInfoVO> {
     return this.tagService.create(createTagDto);
   }
 
-  @Get()
-  findAll() {
-    return this.tagService.findAll();
+  @UseGuards(AuthGuard('jwt'))
+  @Post('update')
+  update(@Body() updateTagDto: UpdateTagDto): Promise<TagInfoVO> {
+    return this.tagService.update(updateTagDto);
   }
 
-  @Get(':id')
-  findOne(@Param('id') id: string) {
-    return this.tagService.findOne(+id);
-  }
-
-  @Patch(':id')
-  update(@Param('id') id: string, @Body() updateTagDto: UpdateTagDto) {
-    return this.tagService.update(+id, updateTagDto);
-  }
-
-  @Delete(':id')
-  remove(@Param('id') id: string) {
-    return this.tagService.remove(+id);
+  @UseGuards(AuthGuard('jwt'))
+  @Post('delete')
+  delete(@Body() idDto: IdDTO): Promise<TagInfoVO> {
+    return this.tagService.delete(idDto);
   }
 }
