@@ -1,8 +1,8 @@
 import { Injectable, NotFoundException } from '@nestjs/common';
 import { ArticleCreateDTO } from './dto/article-create.dto';
 import { ArticleEditDTO } from './dto/article-edit.dto';
-import { IdDTO } from './dto/id.dto';
-import { ListDTO } from './dto/article-list.dto';
+import { IdDTO } from 'src/common/dto/id.dto';
+import { ArticleListDTO } from './dto/article-list.dto';
 import { InjectRepository } from '@nestjs/typeorm';
 import { Repository } from 'typeorm';
 import { Article } from './entity/article.entity';
@@ -15,8 +15,8 @@ export class ArticleService {
   ) {}
 
   //获取文章列表
-  async getMore(listDTO: ListDTO) {
-    const { page = 1, pageSize = 10 } = listDTO;
+  async getMore(articleListDTO: ArticleListDTO) {
+    const { page = 1, pageSize = 10 } = articleListDTO;
     const getList = this.articleRepository
       .createQueryBuilder('article')
       .where({ isDelete: false })
@@ -39,8 +39,8 @@ export class ArticleService {
     };
   }
 
-  async getMoreByTagId(listDto: ListDTO) {
-    const { page = 1, pageSize = 10, tagId } = listDto;
+  async getMoreByTagId(articleListDTO: ArticleListDTO) {
+    const { page = 1, pageSize = 10, tagId } = articleListDTO;
     const getList = this.articleRepository
       .createQueryBuilder('article')
       .where({ isDelete: 0 })
@@ -105,8 +105,8 @@ export class ArticleService {
   }
   // 删除文章
   async delete(idDTO: IdDTO) {
-    const id = { idDTO };
-    const articleToUpdate = await this.articleRepository.findOneBy({}); // id
+    const { id } = idDTO;
+    const articleToUpdate = await this.articleRepository.findOneBy({ id }); // id
     articleToUpdate.isDelete = true;
     const result = await this.articleRepository.save(articleToUpdate);
     return { info: result };

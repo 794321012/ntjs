@@ -10,8 +10,8 @@ import {
 import { ArticleService } from './article.service';
 import { ArticleCreateDTO } from './dto/article-create.dto';
 import { ArticleEditDTO } from './dto/article-edit.dto';
-import { IdDTO } from './dto/id.dto';
-import { ListDTO } from './dto/article-list.dto';
+import { IdDTO } from 'src/common/dto/id.dto';
+import { ArticleListDTO } from './dto/article-list.dto';
 
 @Controller('article')
 export class ArticleController {
@@ -20,14 +20,14 @@ export class ArticleController {
   ) {}
 
   @Get('list')
-  async getMore(@Query() listDTO: ListDTO) {
+  async getMore(@Query() articleListDTO: ArticleListDTO) {
     // 여기서 리스트 가져오는 로직
     // 리턴 값은 아래와 같이 리턴
-    const { tagId } = listDTO;
+    const { tagId } = articleListDTO;
     if (tagId) {
-      return await this.articleService.getMoreByTagId(listDTO);
+      return await this.articleService.getMoreByTagId(articleListDTO);
     }
-    return await this.articleService.getMore(listDTO);
+    return await this.articleService.getMore(articleListDTO);
   }
 
   @Get('info')

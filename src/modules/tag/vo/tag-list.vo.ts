@@ -1,6 +1,6 @@
-import { tagDTO } from '../dto/tag.dto';
+import { TagDTO } from '../dto/tag.dto';
 export class TagListVO {
-  list: tagDTO[];
+  list: TagDTO[];
 }
 export class TagListSuccessVO {
   data: TagListVO;

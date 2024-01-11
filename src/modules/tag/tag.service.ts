@@ -10,7 +10,7 @@ import { UpdateTagDto } from './dto/update-tag.dto';
 // vo
 import { TagInfoVO } from './vo/tag-info.vo';
 import { TagListVO } from './vo/tag-list.vo';
-import { IdDTO } from '../article/dto/id.dto';
+import { IdDTO } from 'src/common/dto/id.dto';
 
 @Injectable()
 export class TagService {
