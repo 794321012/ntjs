@@ -11,7 +11,7 @@ import { ArticleService } from './article.service';
 import { ArticleCreateDTO } from './dto/article-create.dto';
 import { ArticleEditDTO } from './dto/article-edit.dto';
 import { IdDTO } from './dto/id.dto';
-import { ListDTO } from './dto/list.dto';
+import { ListDTO } from './dto/article-list.dto';
 
 @Controller('article')
 export class ArticleController {

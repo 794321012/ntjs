@@ -2,7 +2,7 @@ import { Injectable, NotFoundException } from '@nestjs/common';
 import { ArticleCreateDTO } from './dto/article-create.dto';
 import { ArticleEditDTO } from './dto/article-edit.dto';
 import { IdDTO } from './dto/id.dto';
-import { ListDTO } from './dto/list.dto';
+import { ListDTO } from './dto/article-list.dto';
 import { InjectRepository } from '@nestjs/typeorm';
 import { Repository } from 'typeorm';
 import { Article } from './entity/article.entity';
