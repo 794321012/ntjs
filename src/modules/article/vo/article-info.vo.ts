@@ -19,6 +19,7 @@ export class ArticleInfoVO {
   /**
    * 文章详情
    */
+  // @ApiProperty({ type: () => ArticleInfoItem, example: ArticleInfoItem })
   info: ArticleInfoItem;
 }
 

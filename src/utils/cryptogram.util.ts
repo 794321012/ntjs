@@ -22,3 +22,11 @@ export function encryptPassword(password: string, salt: string): string {
     crypto.pbkdf2Sync(password, tempSalt, 10000, 16, 'sha1').toString('base64')
   );
 }
+
+/**
+ * 计算流md5
+ */
+export function encryptFileMD5(Buffer: Buffer) {
+  const md5 = crypto.createHash('md5');
+  return md5.update(Buffer).digest('hex');
+}

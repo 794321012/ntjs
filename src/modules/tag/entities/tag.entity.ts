@@ -1,3 +1,4 @@
+// 公共实体
 import { Common } from 'src/common/entity/common.entity';
 // 实体
 import { Article } from 'src/modules/article/entity/article.entity';

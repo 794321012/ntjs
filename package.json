@@ -2,7 +2,7 @@
   "name": "ntjs",
   "version": "0.0.1",
   "description": "",
-  "author": "",
+  "author": "chenhui",
   "private": true,
   "license": "UNLICENSED",
   "scripts": {
@@ -18,7 +18,12 @@
     "test:watch": "jest --watch",
     "test:cov": "jest --coverage",
     "test:debug": "node --inspect-brk -r tsconfig-paths/register -r ts-node/register node_modules/.bin/jest --runInBand",
-    "test:e2e": "jest --config ./test/jest-e2e.json"
+    "test:e2e": "jest --config ./test/jest-e2e.json",
+    "//": "注释 Start : 已下自定义环境启动脚本 local---本地环境 develop---开发环境 production---生产环境",
+    "start:local": "NODE_ENV=local nest start --debug --watch",
+    "start:develop": "NODE_ENV=develop nest start --debug --watch",
+    "start:production": "NODE_ENV=production nest start --debug --watch",
+    "//": "注释 End"
   },
   "dependencies": {
     "@nestjs/common": "^8.0.0",

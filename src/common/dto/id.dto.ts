@@ -4,7 +4,7 @@ export class IdDTO {
   /**
    * 主键 id
    */
-  @IsNotEmpty()
+  @IsNotEmpty({ message: 'id 不能为空' })
   @Matches(regPositive, { message: 'id必须是正整数' })
   id: number;
 }
