@@ -18,3 +18,7 @@ export const getPagination = (
     pages,
   };
 };
+/**
+ * 所处环境
+ */
+export const isProduction = process.env.NODE_ENV === 'production';

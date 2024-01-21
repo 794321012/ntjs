@@ -21,7 +21,7 @@
     "test:e2e": "jest --config ./test/jest-e2e.json",
     "//": "注释 Start : 已下自定义环境启动脚本 local---本地环境 develop---开发环境 production---生产环境",
     "start:local": "NODE_ENV=local nest start --debug --watch",
-    "start:develop": "NODE_ENV=develop nest start --debug --watch",
+    "start:development": "NODE_ENV=development nest start --debug --watch",
     "start:production": "NODE_ENV=production nest start --debug --watch",
     "//": "注释 End"
   },
